@@ -1,0 +1,173 @@
+"use client";
+
+import { useState } from "react";
+
+const avatars = [
+  "https://framerusercontent.com/images/2Bg3DOpSy1S4vTayVOKiVtJKds.png?width=707&height=689",
+  "https://framerusercontent.com/images/vFRLbcbgJI1r9z7ZWnJ264cxkho.png?width=861&height=849",
+  "https://framerusercontent.com/images/YES2ysESbz1MBub19UyR4PzQLM.png?width=946&height=870",
+];
+
+const footerLinks = [
+  { label: "Privacy", href: "" },
+  { label: "Contact", href: "" },
+  { label: "Launch updates", href: "" },
+];
+
+function ThunderIcon() {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M11.47 1.25 4.9 10.08h4.08L8.53 18.75l6.57-8.83h-4.08l.45-8.67Z" />
+    </svg>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    setStatus(valid ? "success" : "error");
+    if (valid) {
+      setEmail("");
+    }
+  }
+
+  return (
+    <main className="page-shell">
+      <div className="ambient ambient-left" />
+      <div className="ambient ambient-right" />
+
+      <header className="replica-nav join-waitlist-nav">
+        <a className="replica-brand" href="/">
+          <img src="/icon.svg" alt="" />
+          <span>Hermis</span>
+        </a>
+
+        <div className="replica-actions">
+          <a className="contact" href="/join-waitlist">
+            Join waitlist
+          </a>
+        </div>
+      </header>
+
+      <section className="hero-frame">
+        <div className="mesh-layer" />
+
+        <div className="hero-rings" aria-hidden="true">
+          <div className="ring ring-1" />
+          <div className="ring ring-2" />
+          <div className="ring ring-3" />
+          <div className="ring ring-4" />
+
+          <div className="orbit orbit-inner">
+            <span className="ring-star orbit-star" />
+          </div>
+          <div className="orbit orbit-middle">
+            <span className="ring-star orbit-star" />
+          </div>
+          <div className="orbit orbit-outer">
+            <span className="ring-star orbit-star" />
+          </div>
+        </div>
+
+        <div className="content-wrap">
+          <div className="badge">
+            <span className="badge-icon">
+              <ThunderIcon />
+            </span>
+            <span>Hermis is launching soon</span>
+          </div>
+
+          <h1 className="hero-title">
+            Ready to launch your
+            <br />
+            next big product?
+          </h1>
+
+          <p className="hero-copy">
+            Get early access to our upcoming release
+            <br />
+            and secure your spot on the waitlist.
+          </p>
+
+          <div className="waitlist-card">
+            <div className="waitlist-card-inner">
+              <div className="avatar-row" aria-hidden="true">
+                {avatars.map((src, index) => (
+                  <span
+                    className="avatar-chip"
+                    key={src}
+                    style={{ zIndex: avatars.length - index }}
+                  >
+                    <img src={src} alt="" />
+                  </span>
+                ))}
+                <span className="avatar-count">+2K</span>
+              </div>
+
+              <h2>Join the waitlist</h2>
+              <p>Sign up to be one of the first to use Hermis.</p>
+
+              <form className="waitlist-form" onSubmit={handleSubmit}>
+                <label className="sr-only" htmlFor="email">
+                  Email address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email..."
+                  autoComplete="email"
+                  value={email}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                    if (status !== "idle") {
+                      setStatus("idle");
+                    }
+                  }}
+                  className={status}
+                />
+                <button type="submit">
+                  <span>Get Notified</span>
+                  <ArrowIcon />
+                </button>
+              </form>
+
+              <p className={`form-message ${status}`}>
+                {status === "success"
+                  ? "You're on the list. We'll reach out soon."
+                  : status === "error"
+                    ? "Please enter a valid email address."
+                    : ""}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="page-footer">
+        <div className="footer-row">
+          <span className="footer-caption">Hermis</span>
+          {footerLinks.map((link, index) => (
+            <div className="footer-link-group" key={link.label}>
+              {index > 0 ? <span className="footer-dot" aria-hidden="true" /> : null}
+              <a href={link.href}>{link.label}</a>
+            </div>
+          ))}
+        </div>
+      </footer>
+    </main>
+  );
+}
