@@ -391,6 +391,15 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="closing-note-section">
+          <div className="closing-note">
+            <p>
+              Hermis helps technical teams turn raw source material into platform-ready drafts with
+              your voice, your approval, and none of the repetitive publishing work.
+            </p>
+          </div>
+        </section>
+
         <footer className="page-footer home-page-footer">
           <div className="footer-row">
             <span className="footer-caption">Built solo by Kaushik</span>
@@ -408,7 +417,7 @@ export default function Home() {
             ))}
             <div className="footer-link-group">
               <span className="footer-dot" aria-hidden="true" />
-              <span>© 2026 Kaushik</span>
+              <span>Copyright 2026 Kaushik</span>
             </div>
           </div>
         </footer>
@@ -416,3 +425,4 @@ export default function Home() {
     </main>
   );
 }
+

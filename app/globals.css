@@ -1628,6 +1628,29 @@ input {
   isolation: isolate;
 }
 
+.closing-note-section {
+  position: relative;
+  z-index: 8;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 14px;
+}
+
+.closing-note {
+  width: min(calc(100% - 48px), 720px);
+  text-align: center;
+}
+
+.closing-note p {
+  margin: 0;
+  color: #737b80;
+  font-family: Satoshi, Inter, sans-serif;
+  font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+  line-height: 1.65;
+  font-weight: 500;
+}
+
 .feature-backdrop-word {
   position: absolute;
   left: 50%;
@@ -2158,6 +2181,10 @@ input {
   color: rgba(255, 255, 255, 0.055);
 }
 
+.replica-page.theme-dark .closing-note p {
+  color: #a6afbc;
+}
+
 .replica-page.theme-dark .footer-row {
   color: #929cab;
 }
@@ -2261,6 +2288,10 @@ input {
 
   .feature-top-center {
     padding-right: 20px;
+  }
+
+  .closing-note-section {
+    padding-inline: 18px;
   }
 }
 
@@ -2529,6 +2560,19 @@ input {
 
   .feature-replica-section {
     padding: 72px 14px 56px;
+  }
+
+  .closing-note-section {
+    padding: 0 14px 12px;
+  }
+
+  .closing-note {
+    width: min(100%, 340px);
+  }
+
+  .closing-note p {
+    font-size: 0.94rem;
+    line-height: 1.6;
   }
 
   .feature-backdrop-word {
