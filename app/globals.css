@@ -574,6 +574,18 @@ input {
   stroke-linejoin: round;
 }
 
+.waitlist-form button .spinner-icon {
+  animation: waitlistSpin 0.8s linear infinite;
+}
+
+.waitlist-form button .spinner-track {
+  opacity: 0.22;
+}
+
+.waitlist-form button .spinner-head {
+  stroke-width: 2.2;
+}
+
 .form-message {
   min-height: 20px;
   margin-top: 2px;
@@ -670,6 +682,16 @@ input {
 
   to {
     transform: scale(1.03) translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes waitlistSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 

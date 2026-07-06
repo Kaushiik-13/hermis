@@ -30,6 +30,15 @@ function ArrowIcon() {
   );
 }
 
+function SpinnerIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="spinner-icon">
+      <circle cx="12" cy="12" r="8.5" className="spinner-track" />
+      <path d="M12 3.5a8.5 8.5 0 0 1 8.5 8.5" className="spinner-head" />
+    </svg>
+  );
+}
+
 export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
@@ -192,9 +201,13 @@ export default function Home() {
                   }}
                   className={status === "error" ? "error" : status === "success" ? "success" : ""}
                 />
-                <button type="submit" disabled={status === "loading"}>
+                <button
+                  type="submit"
+                  disabled={status === "loading"}
+                  aria-busy={status === "loading"}
+                >
                   <span>{status === "loading" ? "Sending..." : "Get Notified"}</span>
-                  {status === "loading" ? null : <ArrowIcon />}
+                  {status === "loading" ? <SpinnerIcon /> : <ArrowIcon />}
                 </button>
               </form>
 
