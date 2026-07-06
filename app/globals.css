@@ -1052,28 +1052,18 @@ input {
     rotate(var(--angle))
     translateX(var(--radius))
     rotate(calc(-1 * var(--angle)));
-  animation: socialOrbit 42s linear infinite;
-}
-
-.orbit-logo.orbit-small {
-  animation-duration: 34s;
-}
-
-.orbit-logo.orbit-outer {
-  animation-duration: 56s;
-  animation-direction: reverse;
 }
 
 .orbit-small {
-  --radius: 420px;
+  --radius: 385px;
 }
 
 .orbit-large {
-  --radius: 455px;
+  --radius: 520px;
 }
 
 .orbit-outer {
-  --radius: 600px;
+  --radius: 630px;
 }
 
 .logo-devto {
