@@ -288,8 +288,11 @@ export default function Home() {
             FEATURES
           </div>
           <div className="feature-replica-grid">
-            {featureCards.map((card) => (
-              <article className={`feature-replica-card ${card.className}`} key={card.title}>
+            {featureCards.map((card, index) => (
+              <article
+                className={`feature-replica-card ${card.className}`}
+                key={`${card.className}-${card.title || "untitled"}-${index}`}
+              >
                 {card.icon ? (
                   <span className="feature-replica-icon">
                     <FeatureGlyph icon={card.icon} />

@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Hermis - Waitlist",
-  description: "Join the Hermis waitlist for early access.",
+  title: "Hermis",
+  description: "Hermis turns technical sources into platform-ready drafts.",
 };
 
 export default function RootLayout({ children }) {
