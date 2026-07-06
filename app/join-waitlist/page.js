@@ -33,14 +33,56 @@ function ArrowIcon() {
 export default function Home() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-    setStatus(valid ? "success" : "error");
-    if (valid) {
+    const trimmedEmail = email.trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail);
+
+    if (!valid) {
+      setStatus("error");
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: trimmedEmail,
+          source: "join-waitlist",
+          company: "",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      if (data.status === "duplicate") {
+        setStatus("success");
+        setMessage("You're already on the waitlist.");
+        return;
+      }
+
+      setStatus("success");
+      setMessage("You're on the list. We'll reach out soon.");
       setEmail("");
+    } catch (error) {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
     }
   }
 
@@ -124,6 +166,17 @@ export default function Home() {
                 <label className="sr-only" htmlFor="email">
                   Email address
                 </label>
+                <label className="sr-only honeypot-field" htmlFor="company">
+                  Company
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="honeypot-field"
+                />
                 <input
                   id="email"
                   type="email"
@@ -134,22 +187,19 @@ export default function Home() {
                     setEmail(event.target.value);
                     if (status !== "idle") {
                       setStatus("idle");
+                      setMessage("");
                     }
                   }}
-                  className={status}
+                  className={status === "error" ? "error" : status === "success" ? "success" : ""}
                 />
-                <button type="submit">
-                  <span>Get Notified</span>
-                  <ArrowIcon />
+                <button type="submit" disabled={status === "loading"}>
+                  <span>{status === "loading" ? "Sending..." : "Get Notified"}</span>
+                  {status === "loading" ? null : <ArrowIcon />}
                 </button>
               </form>
 
               <p className={`form-message ${status}`}>
-                {status === "success"
-                  ? "You're on the list. We'll reach out soon."
-                  : status === "error"
-                    ? "Please enter a valid email address."
-                    : ""}
+                {message}
               </p>
             </div>
           </div>
@@ -173,10 +223,11 @@ export default function Home() {
           ))}
           <div className="footer-link-group">
             <span className="footer-dot" aria-hidden="true" />
-            <span>© 2026 Kaushik</span>
+            <span>Copyright 2026 Kaushik</span>
           </div>
         </div>
       </footer>
     </main>
   );
 }
+
