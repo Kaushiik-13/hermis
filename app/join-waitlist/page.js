@@ -9,9 +9,8 @@ const avatars = [
 ];
 
 const footerLinks = [
-  { label: "Privacy", href: "" },
-  { label: "Contact", href: "" },
-  { label: "Launch updates", href: "" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "X (@arul_kaush2963)", href: "https://x.com/arul_kaush2963", external: true },
 ];
 
 function ThunderIcon() {
@@ -159,13 +158,23 @@ export default function Home() {
 
       <footer className="page-footer">
         <div className="footer-row">
-          <span className="footer-caption">Hermis</span>
+          <span className="footer-caption">Built solo by Kaushik</span>
           {footerLinks.map((link, index) => (
             <div className="footer-link-group" key={link.label}>
               {index > 0 ? <span className="footer-dot" aria-hidden="true" /> : null}
-              <a href={link.href}>{link.label}</a>
+              <a
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
             </div>
           ))}
+          <div className="footer-link-group">
+            <span className="footer-dot" aria-hidden="true" />
+            <span>© 2026 Kaushik</span>
+          </div>
         </div>
       </footer>
     </main>

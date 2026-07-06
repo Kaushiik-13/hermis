@@ -16,6 +16,10 @@ const orbitLogos = [
 ];
 
 const platformNames = ["Dev.to", "Bluesky", "X", "LinkedIn", "Threads"];
+const footerLinks = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "X (@arul_kaush2963)", href: "https://x.com/arul_kaush2963", external: true },
+];
 
 const featureCards = [
   {
@@ -386,6 +390,28 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <footer className="page-footer home-page-footer">
+          <div className="footer-row">
+            <span className="footer-caption">Built solo by Kaushik</span>
+            {footerLinks.map((link, index) => (
+              <div className="footer-link-group" key={link.label}>
+                {index > 0 ? <span className="footer-dot" aria-hidden="true" /> : null}
+                <a
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noreferrer" : undefined}
+                >
+                  {link.label}
+                </a>
+              </div>
+            ))}
+            <div className="footer-link-group">
+              <span className="footer-dot" aria-hidden="true" />
+              <span>© 2026 Kaushik</span>
+            </div>
+          </div>
+        </footer>
       </section>
     </main>
   );
