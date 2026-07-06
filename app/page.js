@@ -144,6 +144,7 @@ function FeatureGlyph({ icon }) {
 
 export default function Home() {
   const [navState, setNavState] = useState("top");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -178,8 +179,19 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("hermis-home-theme");
+    if (savedTheme === "dark" || savedTheme === "light") {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("hermis-home-theme", theme);
+  }, [theme]);
+
   return (
-    <main className="replica-page">
+    <main className={`replica-page theme-${theme}`}>
       <section className="replica-stage">
         <header className={`replica-nav nav-state-${navState}`}>
           <a className="replica-brand" href="/">
@@ -188,6 +200,24 @@ export default function Home() {
           </a>
 
           <div className="replica-actions">
+            <button
+              type="button"
+              className="theme-toggle"
+              aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              aria-pressed={theme === "dark"}
+              onClick={() => setTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"))}
+            >
+              {theme === "dark" ? (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="4.5" />
+                  <path d="M12 2.5v2.4M12 19.1v2.4M4.93 4.93l1.7 1.7M17.37 17.37l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.93 19.07l1.7-1.7M17.37 6.63l1.7-1.7" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 0 0 9.8 9.8Z" />
+                </svg>
+              )}
+            </button>
             <a className="contact" href="/join-waitlist">
               Join waitlist
             </a>

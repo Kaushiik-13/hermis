@@ -997,6 +997,44 @@ input {
   z-index: 1;
 }
 
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #4f5763;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 10px 22px rgba(77, 88, 109, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .sign-in,
 .contact {
   height: 34px;
@@ -1780,6 +1818,220 @@ input {
 .queue-approve {
   background: rgba(71, 113, 255, 0.12);
   color: #3350b8;
+}
+
+.replica-page {
+  transition: background 240ms ease, color 240ms ease;
+}
+
+.replica-page *,
+.replica-page *::before,
+.replica-page *::after {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease,
+    box-shadow 240ms ease,
+    opacity 240ms ease;
+}
+
+.replica-page.theme-dark {
+  background: #030405;
+  color: #f5f7fb;
+}
+
+.replica-page.theme-dark .replica-stage {
+  background:
+    radial-gradient(circle at 50% 64%, rgba(40, 58, 96, 0.34), transparent 28%),
+    radial-gradient(circle at 22% 26%, rgba(28, 37, 64, 0.32), transparent 24%),
+    linear-gradient(180deg, #020304 0%, #07090d 100%);
+}
+
+.replica-page.theme-dark .replica-stage::before {
+  background-image:
+    linear-gradient(120deg, transparent 0 16%, rgba(255, 255, 255, 0.045) 16.05% 16.14%, transparent 16.2% 34%),
+    linear-gradient(58deg, transparent 0 22%, rgba(255, 255, 255, 0.035) 22.05% 22.14%, transparent 22.2% 46%),
+    linear-gradient(300deg, transparent 0 24%, rgba(255, 255, 255, 0.03) 24.05% 24.14%, transparent 24.2% 44%);
+  opacity: 0.24;
+}
+
+.replica-page.theme-dark .replica-stage::after {
+  background:
+    radial-gradient(circle, rgba(73, 96, 164, 0.38), transparent 64%);
+  filter: blur(40px);
+}
+
+.replica-page.theme-dark .replica-nav {
+  border-color: rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(28, 31, 38, 0.88), rgba(14, 16, 20, 0.72)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(10, 11, 14, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+    0 20px 50px rgba(0, 0, 0, 0.42);
+}
+
+.replica-page.theme-dark .replica-nav::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+}
+
+.replica-page.theme-dark .replica-nav.nav-state-down {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+    0 14px 34px rgba(0, 0, 0, 0.32);
+}
+
+.replica-page.theme-dark .replica-nav.nav-state-up {
+  background:
+    linear-gradient(180deg, rgba(30, 34, 42, 0.92), rgba(16, 18, 23, 0.76)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(12, 14, 18, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+    0 22px 56px rgba(0, 0, 0, 0.48);
+}
+
+.replica-page.theme-dark .replica-brand,
+.replica-page.theme-dark .replica-hero h1,
+.replica-page.theme-dark .feature-replica-copy h3,
+.replica-page.theme-dark .feature-text-highlight p,
+.replica-page.theme-dark .pipeline-output strong,
+.replica-page.theme-dark .queue-card strong,
+.replica-page.theme-dark .activity-card strong {
+  color: #f5f7fb;
+}
+
+.replica-page.theme-dark .replica-hero p,
+.replica-page.theme-dark .trusted-strip p,
+.replica-page.theme-dark .platform-row span,
+.replica-page.theme-dark .feature-replica-copy p,
+.replica-page.theme-dark .pipeline-output small,
+.replica-page.theme-dark .queue-card small,
+.replica-page.theme-dark .activity-card small {
+  color: #a6afbc;
+}
+
+.replica-page.theme-dark .theme-toggle {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #d8dee8;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 24px rgba(0, 0, 0, 0.32);
+}
+
+.replica-page.theme-dark .contact,
+.replica-page.theme-dark .start-free {
+  background: linear-gradient(180deg, #eef2fb 0%, #d7dee9 100%);
+  color: #11161f;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    0 14px 28px rgba(0, 0, 0, 0.22);
+}
+
+.replica-page.theme-dark .launch-badge {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 10px 24px rgba(0, 0, 0, 0.2);
+  color: #dce3ec;
+}
+
+.replica-page.theme-dark .launch-badge span,
+.replica-page.theme-dark .workflow-icon,
+.replica-page.theme-dark .feature-replica-icon {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.045);
+  color: #d6dde7;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 20px rgba(0, 0, 0, 0.24);
+}
+
+.replica-page.theme-dark .replica-ring {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.replica-page.theme-dark .accent-left,
+.replica-page.theme-dark .accent-right {
+  border-left-color: rgba(115, 146, 255, 0.72);
+  border-right-color: rgba(115, 146, 255, 0.72);
+}
+
+.replica-page.theme-dark .orbit-logo {
+  border-color: rgba(255, 255, 255, 0.09);
+  background: rgba(17, 19, 24, 0.94);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+}
+
+.replica-page.theme-dark .logo-x,
+.replica-page.theme-dark .logo-threads,
+.replica-page.theme-dark .logo-medium {
+  color: #f5f7fb;
+}
+
+.replica-page.theme-dark .logo-devto {
+  background: #f5f7fb;
+  color: #0b0d12;
+}
+
+.replica-page.theme-dark .logo-linkedin {
+  background: #2c5db3;
+}
+
+.replica-page.theme-dark .activity-stack::before {
+  background:
+    radial-gradient(circle at 32% 48%, rgba(75, 111, 220, 0.42), transparent 56%),
+    radial-gradient(circle at 68% 58%, rgba(101, 84, 201, 0.36), transparent 54%),
+    radial-gradient(circle at 54% 74%, rgba(255, 255, 255, 0.08), transparent 64%);
+  opacity: 1;
+}
+
+.replica-page.theme-dark .activity-card,
+.replica-page.theme-dark .feature-replica-card,
+.replica-page.theme-dark .feature-queue-visual,
+.replica-page.theme-dark .pipeline-source-stack span,
+.replica-page.theme-dark .pipeline-output,
+.replica-page.theme-dark .queue-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(23, 25, 31, 0.95), rgba(14, 16, 20, 0.92)),
+    rgba(12, 14, 18, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 18px 38px rgba(0, 0, 0, 0.34);
+}
+
+.replica-page.theme-dark .activity-card::before,
+.replica-page.theme-dark .feature-queue-visual::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 54%);
+}
+
+.replica-page.theme-dark .status-pill,
+.replica-page.theme-dark .queue-action,
+.replica-page.theme-dark .queue-chip {
+  border-color: rgba(119, 136, 189, 0.22);
+  background: rgba(92, 112, 194, 0.16);
+  color: #d6defd;
+}
+
+.replica-page.theme-dark .queue-action:not(.queue-approve) {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #dbe2ec;
+}
+
+.replica-page.theme-dark .feature-backdrop-word {
+  color: rgba(255, 255, 255, 0.055);
+}
+
+.replica-page.theme-dark .pipeline-line {
+  background: linear-gradient(90deg, rgba(89, 110, 175, 0.22), rgba(147, 163, 255, 0.6));
 }
 
 @media (max-width: 980px) {
